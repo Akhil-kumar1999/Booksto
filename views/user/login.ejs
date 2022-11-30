@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="vendor/font-awesome/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="vendor/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="vendor/animate.css/animate.css">
+  <link rel="stylesheet" href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="vendor/slick-carousel/slick/slick.css" />
+  <link rel="stylesheet" href="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+
+  <link rel="stylesheet" href="css/theme.css">
+
+  <link rel="stylesheet" href="hi.css">
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <% var msgOne,msgTwo%>
+    <div class="container w-50 mt-5">
+      <div class="row">
+        <div class="w-50"></div>
+
+
+        <form class="" action="signin" method="post" id='loginvalidation'>
+
+          <div id="login1" data-target-group="idForm1">
+
+            <header class="border-bottom px-4 px-md-6 py-4">
+              <h2 class="font-size-3 mb-0 d-flex align-items-center"><i
+                  class="flaticon-user mr-3 font-size-5"></i>Account</h2>
+            </header>
+
+            <div class="p-4 p-md-5">
+
+              <div class="form-group mb-4 ">
+                <div class="js-form-message js-focus-state">
+                  <label id="signinEmailLabel9" class="form-label" for="signinEmail9"> Email / Mobile no *</label>
+                  <input type="text" class="form-control rounded-0 height-4 px-4" name="email" id="loginEmail"
+                    placeholder="" aria-label="creativelayers088@gmail.com" aria-describedby="signinEmailLabel9">
+                  <p style="display: none; color: red;" id="msgOne">This is required</p>
+                  <p style="color: red;">
+                    <%= msgOne %>
+                  </p>
+                </div>
+              </div>
+
+
+              <div class="form-group mb-4 ">
+                <div class="js-form-message js-focus-state">
+                  <label id="signinPasswordLabel9" class="form-label" for="signinPassword9">Password *</label>
+                  <input type="password" class="form-control rounded-0 height-4 px-4" name="password" id="loginPassword"
+                    placeholder="" aria-label="" aria-describedby="signinPasswordLabel9">
+                  <p style="display: none; color: red;" id="msgTwo">This feild is required</p>
+                  <p style="color: red;">
+                    <%= msgTwo%>
+                  </p>
+                </div>
+              </div>
+
+
+              <div class="d-flex justify-content-between mb-5 align-items-center">
+                <a class="js-animation-link text-dark font-size-2 t-d-u link-muted font-weight-medium"
+                  href="javascript:;" data-target="#forgotPassword1" data-link-group="idForm1"
+                  data-animation-in="fadeIn">Forgot Password?</a>
+              </div>
+              <div class="mb-4d75">
+                <button type="submit" id="submit" class="btn btn-block py-3 rounded-0 btn-dark pr-5">Login </button>
+              </div>
+        </form>
+
+        <form action="otplogin" method="post">
+          <div class="mt-4">
+            <input type="hidden" name="email" id="inp">
+            <button class="js-animation-link btn btn-block py-3 rounded-0 btn-outline-dark font-weight-medium"
+              id="reqotp" type="submit">REQUEST OTP</button>
+          </div>
+        </form>
+
+        <div class="mb-2 mt-4">
+          <a href="signup" data-target="#signup1" data-link-group="idForm1" data-animation-in="fadeIn">Create
+            Account</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="signup1" style="display: none; opacity: 0;" data-target-group="idForm1">
+
+      <header class="border-bottom px-4 px-md-6 py-4">
+      </header>
+
+
+</body>
+
+<!-- MDB -->
+<script>
+  document.getElementById("submit").addEventListener('click', (event) => {
+
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    // const msgOne=document.getElementById('msgOne')
+    // const msgTwo=document.getElementById('msgTwo')
+    msgOne.style.display = 'none'
+    msgTwo.style.display = 'none'
+    console.log('hello');
+
+    if (email == "") {
+      event.preventDefault();
+      msgOne.style.display = 'block'
+    }
+    else if (password == "") {
+      event.preventDefault()
+      msgTwo.style.display = 'block'
+    }
+  })
+
+
+  // OTP login validation
+
+  
+  document.getElementById('reqotp').addEventListener('click', (event) => {
+
+    var email = document.getElementById('loginEmail').value
+    var msgOne = document.getElementById('msgOne')
+    msgOne.style.display = 'none'
+
+    if (email == '') {
+
+      event.preventDefault()
+      msgOne.style.display = 'block'
+    }
+    else {
+      document.getElementById('inp').value = email
+    }
+
+  })
+
+</script>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+<script src="vendor/popper.js/dist/umd/popper.min.js"></script>
+<script src="vendor/bootstrap/bootstrap.min.js"></script>
+<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="vendor/slick-carousel/slick/slick.min.js"></script>
+<script src="vendor/multilevel-sliding-mobile-menu/dist/jquery.zeynep.js"></script>
+<script src="vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="js/hs.core.js"></script>
+<script src="js/components/hs.unfold.js"></script>
+<script src="js/components/hs.malihu-scrollbar.js"></script>
+<script src="js/components/hs.header.js"></script>
+<script src="js/components/hs.slick-carousel.js"></script>
+<script src="js/components/hs.selectpicker.js"></script>
+<script src="js/components/hs.show-animation.js"></script>
+
+</html>

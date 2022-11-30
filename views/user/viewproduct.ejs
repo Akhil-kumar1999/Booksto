@@ -1,0 +1,89 @@
+
+<div id="primary" class="content-area">
+
+
+    
+    <!-- <main id="main" class="site-main "> -->
+        <div class="product">
+            <div class="bg-punch-light">
+
+                <div class="container">
+                   
+                    <div class="row space-2">
+                        <div
+                            class="col-md-6 col-lg-5 offset-lg-1 woocommerce-product-gallery woocommerce-product-gallery--with-images images">
+                            <figure class="woocommerce-product-gallery__wrapper mb-6 b-md-0">
+                                <div class="js-slick-carousel u-slick"
+                                    data-pagi-classes="position-absolute text-center left-0 u-slick__pagination flex-column u-slick__pagination-centered--y ml-md-n4 ml-lg-0 mr-lg-5 mb-0"
+                                    data-vertical="true">
+                                    <div class="js-slide">
+                                        <img src="/product-images/<%=singleproduct._id%>.jpg" alt="Image Description"
+                                            class="mx-auto img-fluid">
+                                    </div>
+                                    
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-md-6 col-lg-5 summary entry-summary">
+                            <div class="border bg-white">
+                                <div class="py-4 px-5">
+                                    <div class="border-bottom mb-4">
+                                        <h1 class="product_title entry-title font-size-26 mb-3"><%=singleproduct.name%></h1>
+                                        <div class="font-size-2 mb-4">
+                                            <span class="text-yellow-darker">
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                            </span>
+                                            <span class="ml-3">(3,714)</span>
+                                            <span class="ml-3 font-weight-medium"><%=singleproduct.author%></span>
+                                            <span class="ml-2 text-gray-600"><%=singleproduct.type%></span>
+                                        </div>
+                                        <div
+                                            class="woocommerce-product-details__short-description font-size-2 mb-5">
+                                            <p class=""><%=singleproduct.description%></p>
+                                        </div>
+                                    </div>
+                                    <p class="price font-size-22 font-weight-medium mb-4">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol"></span>
+                                        </span> 
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">₹</span><%=singleproduct.price%>
+                                        </span>
+                                    </p>
+                                   
+
+                                    <form class="cart mb-4 d-md-flex align-items-end" method="post" action="addtocart"
+                                        enctype="multipart/form-data">
+                                       
+                                        <%var id%>
+                                         <input type="hidden" name="proid" value="<%=singleproduct._id%>">
+                                         <button type="submit" name="add-to-cart"
+                                            class="btn btn-block ml-md-3 btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt">Add
+                                            to cart</button>  
+                                        
+                                    </form>
+
+
+
+
+                                    <ul class="list-unstyled nav d-block d-md-flex justify-content-center">
+                                        <li class="mr-md-4 mb-4 mb-md-0">
+                                            <a href="/wishlist?id=<%=singleproduct._id%>" class="h-primary"><i class="flaticon-heart mr-2"></i> Add to
+                                                Wishlist</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+         </div>
+    </main>
+</div>
