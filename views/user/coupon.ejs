@@ -1,0 +1,76 @@
+<div class=" m-5 ">
+    <section class="sidebar-with-product">
+        <div class="space-bottom-2">
+            <div class="container">
+                <div class="row">
+                   
+                    </div>
+                    <!-- toprate close -->
+                    <div class="col-lg-8 col-xl-9">
+                        <h2 class="font-size-26 mb-4">Your Coupons</h2>
+                        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-3 row-cols-wd-4 products">
+
+                            <!-- Product listing -->
+                                <%for(var i =0; i< coupon.length; i++){%>
+                            
+                                    <div class="col mb-5">
+                                        <div class=" border ">
+                                            <div class="product__inner overflow-hidden p-3 p-md-4d875">
+                                                <div
+                                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
+                                               
+                                                    <div
+                                                        class="woocommerce-loop-product__body product__body pt-3 bg-white">
+                                                    
+                                                        <h2
+                                                            class=" crop-text-2 h-dark">
+                                                            <a href="#" id="myText">
+                                                                <%=coupon[i].name%>
+                                                            </a>
+                                                        </h2>
+                                                        <div class="font-size-2  mb-1 text-truncate"><a href=""
+                                                                class="text-gray-700">
+                                                               
+                                                            </a></div>
+                                                        <div
+                                                            class="price d-flex align-items-center font-weight-medium font-size-3">
+                                                            <span class="woocommerce-Price-amount amount"><span
+                                                                    class="woocommerce-Price-currencySymbol">₹</span>
+                                                                    <%=coupon[i].discount%>
+                                                            </span>
+                                                        </div>
+                                                        <a onclick="copyContent()" href="">Copy Code</a>
+
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                                  
+                                        <!-- end -->
+
+
+
+
+
+                                        <!-- row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    let text = document.getElementById('myText').innerHTML;
+    const copyContent = async () => {
+      try {
+        await navigator.clipboard.writeText(text);
+        console.log('Content copied to clipboard');
+      } catch (err) {
+        console.error('Failed to copy: ', err);
+      }
+    }
+  </script>

@@ -12,7 +12,7 @@
         <tr>
             <th>No</th>
             <th>Coupon Code</th>
-            <th>Minimum Price</th>
+            <th>Name</th>
             <th>Discount</th>
             <th>Date</th>
             <th>Action</th>
@@ -20,17 +20,17 @@
     </thead>
     
     <tbody>
-        
+        <%for (var i=0;i<coupons.length;i++){%>
         <tr>
-            <td>1</td>
-            <td>C110D33</td>
-            <td>2000</td>
-            <td>500</td>
+            <td><%=i+1%></td>
+            <td><%=coupons[i]._id%></td>
+            <td><%=coupons[i].name%></td>
+            <td><%=coupons[i].discount%></td>
             <td>01-8-2022</td>
             <td>Delete</td>
            
         </tr>
-       
+       <%}%>
     </tbody>
          </table>
     </div>

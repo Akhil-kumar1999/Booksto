@@ -127,23 +127,26 @@
     </tr>
     </thead>
     <%for(var y=0; y< orderDetails.length; y++){%>
-    
+        <%for(var i=0; i< orderDetails[y].productDetails.items.length; i++){%>
     
     <tbody>  
     <tr class="border">
-    <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6"><%=orderDetails[0].productDetails.items[0].name%></th>
-    <td class="align-middle py-5">March 26, 2020</td>
-    <td class="align-middle py-5"><%=orderDetails[0].status%></td>
+    <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6"><%=orderDetails[y].productDetails.items[i].name%></th>
+    <td class="align-middle py-5"><%=orderDetails[y].date%></td>
+    <td class="align-middle py-5"><%=orderDetails[y].productDetails.items[i].status%></td>
     <td class="align-middle py-5">
-    <span class="text-primary"><%=orderDetails[0].total%></span> </td>
+    <span class="text-primary"><%=orderDetails[y].total%></span> </td>
     <td class="align-middle py-5">
-    <div class="d-flex justify-content-center">
-    <button type="submit" class="btn btn-dark rounded-0 btn-wide font-weight-medium">View
+       <form action="/cancelOrder?orderId=<%=orderDetails[y]._id%>&productId=<%=orderDetails[y].productDetails.items[i]%>" method="post">
+    <div class="d-flex justify-content-center"> 
+    <button type="submit"  name="status" value="cancel request" onclick="click()" id="btn" class="btn btn-dark rounded-0 btn-wide font-weight-medium">Cancel 
     </button>
     </div>
+</form>
     </td>
     </tr>
     </tbody>
+    <%}%>
     <%}%>
     </table>
     </div>
@@ -172,7 +175,7 @@
     <span class="text-primary">$1,855.00</span> for 5 items</td>
     <td class="align-middle py-5">
     <div class="d-flex justify-content-center">
-    <button type="submit" class="btn btn-dark rounded-0 btn-wide font-weight-medium">View
+    <button type="submit" class="btn btn-dark rounded-0 btn-wide font-weight-medium">Cancel order
     </button>
     </div>
     </td>
@@ -190,11 +193,11 @@
     <h6 class="font-weight-medium font-size-22 mb-3">Billing Address
     </h6>
     <address class="d-flex flex-column mb-4">
-    <span class="text-gray-600 font-size-2">Ali Tufan</span>
-    <span class="text-gray-600 font-size-2">Bedford St,</span>
-    <span class="text-gray-600 font-size-2">Covent Garden, </span>
-    <span class="text-gray-600 font-size-2">London WC2E 9ED</span>
-    <span class="text-gray-600 font-size-2">United Kingdom</span>
+    <span class="text-gray-600 font-size-2"><%=resolve.name%></span>
+    <span class="text-gray-600 font-size-2"><%=resolve.place%></span>
+    <span class="text-gray-600 font-size-2"><%=resolve.contact%> </span>
+    <span class="text-gray-600 font-size-2"><%=resolve.email%></span>
+    
     </address>
     <div class="d-flex">
     <button type="submit" class="btn btn-dark width-150 rounded-0 btn-wide font-weight-medium">Edit</button>
@@ -205,11 +208,11 @@
     <h6 class="font-weight-medium font-size-22 mb-3">Shipping Address
     </h6>
     <address class="d-flex flex-column mb-4">
-    <span class="text-gray-600 font-size-2">Ali Tufan</span>
-    <span class="text-gray-600 font-size-2">Bedford St,</span>
-    <span class="text-gray-600 font-size-2">Covent Garden, </span>
-    <span class="text-gray-600 font-size-2">London WC2E 9ED</span>
-    <span class="text-gray-600 font-size-2">United Kingdom</span>
+    <span class="text-gray-600 font-size-2"><%=resolve.name%></span>
+    <span class="text-gray-600 font-size-2"><%=resolve.place%></span>
+    <span class="text-gray-600 font-size-2"><%=resolve.contact%>  </span>
+    <span class="text-gray-600 font-size-2"><%=resolve.email%></span>
+    
     </address>
     <div class="d-flex">
     <button type="submit" class="btn btn-dark width-150 rounded-0 btn-wide font-weight-medium">Edit</button>
@@ -360,3 +363,5 @@
     </div>
     </div>
     </main>
+
+  

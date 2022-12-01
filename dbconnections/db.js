@@ -10,7 +10,7 @@ module.exports={
 
     //connectin dbs
     connectToDb:(cb)=>{
-        MongoClient.connect('mongodb+srv://Akhilkumar:akhil123@cluster0.pfmboqr.mongodb.net/Bookstore?retryWrites=true&w=majority')
+        MongoClient.connect("mongodb+srv://Akhilkumar:akhil123@cluster0.pfmboqr.mongodb.net/Bookstore?retryWrites=true&w=majority")
     // MongoClient.connect('mongodb://localhost:27017/Bookstore')
    .then((client)=>{
      dbConnection=client.db()

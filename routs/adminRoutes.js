@@ -4,6 +4,7 @@ const express= require ('express')
 const Routes = require('twilio/lib/rest/Routes')
 const router = express.Router()
 const admin= require ('../controllers/adminController')
+const db = require('../dbconnections/db')
    
 
 router.use((req, res, next) => {
@@ -39,19 +40,16 @@ router.get('/admin/edit-category/:id',admin.geteditcategoryPage)
 router.get('/admin/delete-category',admin.deletecategory)
 router.post('/admin/submit-editcategory',admin.submitEditcategory)
 
-router.get('/admin/order',(req,res)=>{
-    res.render('admin/oredermanagement')
-})
- 
+router.get('/admin/order',admin.ordermanagement)
 
+router.post('/admin/status', admin.statusChanger)
+  
 
-router.get('/admin/coupon',(req,res)=>{
-    res.render('admin/coupon')
-})
 
 router.get('/admin/addcoupon',(req,res)=>{
     res.render('admin/add-coupon')
 })
+
 
 router.get('/admin/userProfile',(req,res)=>{
     res.render('admin/profile')
@@ -61,10 +59,13 @@ router.get('/admin/profile-edit',(req,res)=>{
     res.render('admin/profile-edit')
 })
 
+router.post('/admin/addcoupon',admin.addCoupons)
 
 
 
-    
+router.get('/admin/coupon',admin.getCoupons)
+
+
 module.exports=router
 
 

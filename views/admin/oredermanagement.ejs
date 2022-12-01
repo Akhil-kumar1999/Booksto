@@ -7,7 +7,7 @@
             <th>Date</th>
             <th>Name</th>
             <th>Address</th>
-            <th>Price</th>
+            <th>Price</th>  
             <th>Payment</th>
             <th>Status</th>
             
@@ -16,66 +16,48 @@
     </thead>
     
     <tbody>
-        
+       <%for(var i =0; i< orderDetails.length; i++){%>
         <tr>
             <td>No</td>
-            <td>2009/02/27</td>
-            <td>Akhil</td>
-            <td>kottayam</td>
-            <td>9999</td>
-            <td>COD</td>
-            <td>Placed</td>
-            <td>submit</td>
+            <td><%=orderDetails[i].date%></td>
+            <td><%=orderDetails[i].userDtails.firstname%></td>
+            <td><%=orderDetails[i].userDtails.address1%></td>
+            <td><%=orderDetails[i].productDetails.items[0].price%></td>
+            <td><%=orderDetails[i].userDtails.payment_method%></td>
+            
+           <form method="post" action="/admin/status?userId=<%=orderDetails[i]._id%>&productId=<%=orderDetails[i].productDetails.items[0].item%>">
+           <td>
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1">
+                <select class="custom-select mr-sm-2" name="status" id="inlineFormCustomSelect">
+                  <option  selected><%=orderDetails[i].productDetails.items[0].status%></option>
+                  <% if(orderDetails[i].productDetails.items[0].status=="Cancel Request"){ %> 
+                    <option  value="Cancel">Canceled</option> 
+                  <% }else if(orderDetails[i].productDetails.items[0].status=="Dispatch"){ %> 
+                    <% }else if(orderDetails[i].productDetails.items[0].status=="Placed"){ %> 
+                        <option  value="Dispatch">Dispatch</option>
+                        <option  value="Deliver">Deliver</option>
+                        <option  value="Cancel">Canceled</option> 
+                  <% }else if(orderDetails[i].productDetails.items[0].status=="pending" ||orderDetails[i].productDetails.items[0].status=="Processing" ){ %> 
+                  <option  value="Placed">Placed</option>
+                  <option  value="Processing">Processing</option>
+                  <option  value="Dispatch">Dispatch</option>
+                  <option  value="Deliver">Deliver</option>
+                  <option  value="Cancel">Canceled</option> 
+                     <% } %>  
+                </select>
+            </div>
+            </div>
+                </td>
+                <td><div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                 
+                </div></td>
+                </form>
            
         </tr>
+        <%}%>
         
-        <tr>
-            <td>No</td>
-            <td>2009/02/27</td>
-            <td>Akhil</td>
-            <td>kottayam</td>
-            <td>9999</td>
-            <td>COD</td>
-            <td>Placed</td>
-            <td>submit</td>
-           
-        </tr>
-        
-        <tr>
-            <td>No</td>
-            <td>2009/02/27</td>
-            <td>Akhil</td>
-            <td>kottayam</td>
-            <td>9999</td>
-            <td>COD</td>
-            <td>Placed</td>
-            <td>submit</td>
-           
-        </tr>
-        
-        <tr>
-            <td>No</td>
-            <td>2009/02/27</td>
-            <td>Akhil</td>
-            <td>kottayam</td>
-            <td>9999</td>
-            <td>COD</td>
-            <td>Placed</td>
-            <td>submit</td>
-           
-        </tr>
-        
-        <tr>
-            <td>No</td>
-            <td>2009/02/27</td>
-            <td>Akhil</td>
-            <td>kottayam</td>
-            <td>9999</td>
-            <td>COD</td>
-            <td>Placed</td>
-            <td>submit</td>
-           
-        </tr>
        
     </tbody>
          </table>

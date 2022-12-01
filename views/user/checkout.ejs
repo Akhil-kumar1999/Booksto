@@ -28,18 +28,16 @@
                                     Click here to enter your code
                                 </a>
                             </div>
-                            <form id="collapseExample9" class="collapse checkout_coupon mt-4 p-4 bg-white border"
-                                method="post">
+                            <form id="collapseExample9" class="collapse checkout_coupon mt-4 p-4 bg-white border">
                                 <div class="row d-flex">
                                     <p class="col-md-4 d-inline form-row form-row-first mb-3 mb-md-0">
                                         <input type="text" name="coupon_code1" class="input-text form-control"
-                                            placeholder="Coupon code" id="coupon_code1" value="">
+                                            placeholder="Coupon code" id="coupon_code1" value="" >
                                     </p>
                                     <p class="col-md-3 d-inline form-row form-row-last">
-                                        <input type="submit"
-                                            class="button form-control border-0 height-4 btn btn-dark rounded-0"
-                                            name="apply_coupon" value="Apply coupon">
+                                       <button onclick="applyCoupon()"></button>
                                     </p>
+                                    <p style="color:red ;" id="Message"></p>
                                 </div>
                                 <div class="clear"></div>
                             </form>
@@ -184,25 +182,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 pt-5 bg-white border border-top-0 mt-n-one">
-                                        <div class="woocommerce-additional-fields">
-                                            <h3 class="mb-4 font-size-3">Additional information</h3>
-                                            <div class="woocommerce-additional-fields__field-wrapper">
-
-                                                <p class="col-12 mb-4d75 px-0 form-row notes" id="comments_field"
-                                                    data-priority="">
-                                                    <label for="order_comments" class="form-label">Order notes
-                                                        (optional)</label>
-
-                                                    <textarea name="order_comments" class="input-text form-control"
-                                                        id="comments"
-                                                        placeholder="Notes about your order, e.g. special notes for delivery."
-                                                        rows="8" cols="5"></textarea>
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                 </div>
 
                                 <h3 id="order_review_heading" class="d-none">Your order</h3>
@@ -258,7 +238,7 @@
                                                                 </td>
                                                                 <td class="product-total">
                                                                     <span class="woocommerce-Price-amount amount"><span
-                                                                            class="woocommerce-Price-currencySymbol">₹</span><%=productDetails.items[i].price%></span>
+                                                                            class="woocommerce-Price-currencySymbol">₹</span><span><%=productDetails.items[i].price%></span></span>
                                                                 </td>
                                                             </tr>
                                                       
@@ -376,7 +356,7 @@
                                                     Address</a>
                                             </div>
                                         </div>
-                                        <div class="p-4d875 border">
+                                        <!-- <div class="p-4d875 border">
                                             <div id="checkoutHeadingThree" class="checkout-head">
                                                 <a href="#"
                                                     class="text-dark d-flex align-items-center justify-content-between"
@@ -397,20 +377,19 @@
                                                             d="M15.000,8.000 L9.000,8.000 L9.000,15.000 L7.000,15.000 L7.000,8.000 L0.000,8.000 L0.000,6.000 L7.000,6.000 L7.000,-0.000 L9.000,-0.000 L9.000,6.000 L15.000,6.000 L15.000,8.000 Z" />
                                                     </svg>
                                                 </a>
-                                            </div>
+                                            </div> -->
 
-                                            <div id="checkoutCollapseThree" class="mt-4 checkout-content collapse show"
+                                            <!-- <div id="checkoutCollapseThree" class="mt-4 checkout-content collapse show"
                                                 aria-labelledby="checkoutHeadingThree" data-parent="#checkoutAccordion">
                                                 <div class="coupon">
                                                     <label for="coupon_code">Coupon:</label>
                                                     <input type="text" name="coupon_code" class="input-text"
                                                         id="coupon_code" value="" placeholder="Coupon code"
                                                         autocomplete="off">
-                                                    <input type="submit" class="button" name="apply_coupon"
-                                                        value="Apply coupon">
+                                                   <button onclick="applyCoupon()" >Apply</button>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div> -->
+                                        <!-- </div> -->
 
                                         <div class="p-4d875 border">
                                             <table class="shop_table shop_table_responsive">
@@ -420,7 +399,7 @@
                                                         <td data-title="Total"><strong><span
                                                                     class="woocommerce-Price-amount amount"><span
                                                                         class="woocommerce-Price-currencySymbol">₹</span>
-                                                                    <%=totalAmount.total%>
+                                                                 <span id="totalprice">  <%=totalAmount.total%></span> 
                                                                 </span></strong>
                                                         </td>
                                                     </tr>
@@ -602,5 +581,28 @@
             }
         })
     }
+
+function applyCoupon(){
+    let coupon=document.getElementById('coupon_code1').value
+    let price=document.getElementById('totalprice').innerHTML
+    console.log(coupon);
+    $.ajax({
+      url: "applycoupon",
+      data: {
+        coupon,
+        price,
+      },
+      method: "post",
+      success: (resolve) => {
+        if(resolve.price){
+            console.log(resolve);
+    document.getElementById('totalprice').innerHTML=resolve.price
+        }else{
+            document.getElementById('Message').innerHTML=resolve.Message
+        }
+ 
+      },
+    });
+}
 
 </script>

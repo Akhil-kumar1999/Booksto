@@ -15,7 +15,7 @@ const internal = require("stream");
 const authToken = process.env.authToken
 const accountSid = process.env.accountSid
 const servieceId = process.env.servieceId
-// const client = require('twilio')(authToken,accountSid)
+// const client = require('twi/lio')(authToken,accountSid)
 let db;
 connectToDb((err) => {
   db = getDb();
@@ -46,15 +46,15 @@ const getHome = (req, res) => {
         db.collection("user")
           .findOne({ _id: ObjectId(userId) })
           .then(async (resolve) => {
-            const getCart = await getCartTotal(userId);
-            console.log(getCart);
-            const count = getCart.cartItems.items.length;
+            // const getCart = await getCartTotal(userId);
+            // console.log(getCart);
+            // const count = getCart.cartItems.items.length;
             console.log("home coming");
             console.log(resolve);
-            db.collection('category').fin/checkoutd()
+            db.collection('category').find()
             .forEach(Categoryname=>category.push(Categoryname))
             .then(()=>{
-              res.render("user/home", { books, count,category });
+              res.render("user/home", { books, category });
             })
             
           })
@@ -345,6 +345,24 @@ const getcartPage = (req, res) => {
 };
 
 
+// get coupons
+
+const getcoupons =(req,res)=>{
+  let coupon = []
+  db.collection('coupons').find().forEach((discount)=>coupon.push(discount))
+  .then(()=>{
+    console.log('hgjggh');
+    res.render('user/coupon',{coupon})
+  })
+ 
+}
+
+
+
+
+
+
+
 
 // getting checkout page
 const getCheckoutpage = (req, res) => {
@@ -372,7 +390,27 @@ const getCheckoutpage = (req, res) => {
   }
 };
 
+const applycoupon=(req,res)=>{
+  let userId=req.session.user._id
+  db.collection('usercoupons').findOne({user:ObjectId(userId)}).then((resolve)=>{
+if(resolve){
+  res.json({Message:'You can only apply for one offer'})
 
+}else{
+  console.log('jhj',req.body);
+  db.collection('coupons').findOne({name:req.body.coupon}).then((resolve)=>{
+    console.log(resolve.discount);
+    let price=req.body.price-resolve.discount
+
+db.collection('usercoupons').insertOne({user:ObjectId(userId),couponname:resolve.name,offerapplied:resolve.discount}).then(()=>{
+  res.json({price})
+})
+   
+  })
+}
+  })
+ 
+}
 
 // conform checkout
 const confromcheckout = (req, res) => {
@@ -399,9 +437,11 @@ const confromcheckout = (req, res) => {
             userDtails,
             productDetails,
             total,
+            date:new Date()
           })
           .then((resolve) => {
             let orderId = resolve.insertedId;
+            console.log(orderId,"orderid");
             db.collection("cart")
               .deleteOne({ user: ObjectId(userId) })
               .then((resolve) => {
@@ -486,8 +526,10 @@ const verifyPayment = (req, res) => {
 //order success 
 const orderSuccess = (req, res) => {
   const orderId = req.query.id
+  console.log();
   db.collection('orders').findOne({ _id : ObjectId(orderId)})
   .then((resolve) => {
+    console.log(resolve,"address");
     let details = resolve
     res.render('user/orderSuccess',{details})
   })
@@ -507,6 +549,7 @@ const getMyaccount = (req, res) => {
     db.collection("user")
       .findOne({ _id: ObjectId(userId) })
       .then((resolve) => {
+        
         db.collection("orders")
           .find({ userId: ObjectId(userId) })
           .forEach((userId) => orderDetails.push(userId))
@@ -591,11 +634,33 @@ const removeCartproduct = (req, res) => {
     });
 };
 
+// order cancellin
+ 
+const ordercancelling =(req,res)=>{
+
+const {
+  orderId,
+  productId
+} = req.query
+
+db.collection('orders').updateOne({
+  _id : ObjectId(userId), 'productDetails.items.item' : ObjectId(productId)
+}, { $set : { 'productDetails.items.$.status' : 'cancelled' }})
+.then((resolve) => {
+  console.log(resolve,'sssssssssssssss')
+  res.redirect('/myaccount')
+})
+}
+
+
+
+
 // logout
 const reqForLogout = (req, res) => {
   req.session.userloggedIn = false;
   res.redirect("/");
 };
+
 
 module.exports = {
   getHome,
@@ -604,14 +669,16 @@ module.exports = {
   confromcheckout,
   otpValidation,
   getViewProduct,
+  getcoupons,
   getWhishlist,
   getcartPage,
   getCheckoutpage,
   reqForLogout,
   Addtocart,
+  ordercancelling,
   changequantity,
   removeCartproduct,
   getMyaccount,
   verifyPayment,
-  orderSuccess
-};
+  orderSuccess,applycoupon
+}

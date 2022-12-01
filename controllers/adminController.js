@@ -26,6 +26,7 @@ const signin = ((req, res) => {
 
   db.collection('admin').findOne({ email: email })
     .then((resolve) => {
+      console.log(resolve);
       if (password == resolve.password) {
         res.render('admin/admin-dashboard')
       }
@@ -52,10 +53,7 @@ const addbookpage = (req, res) => {
     .catch((err) => {
       console.log('err found')
     })
-
-
 }
-
 
 
 // admin get book page
@@ -254,8 +252,68 @@ const unblockUser = (req, res) => {
 
 
 
+const addCoupons=(req,res)=>{
+  const{name,discount,date}=req.body
+  console.log(req.files);
+  db.collection('coupons').insertOne({name:name,discount:discount,date:date}).
+  then((response)=>{
+  
+
+    console.log(response,"coupon updated");
+    res.render('admin/add-coupon',{message:'coupon added successfully'})
+  })
+}
 
 
+const getCoupons =(req,res)=>{
+  let coupons =[]
+  db.collection('coupons').find()
+  .forEach((name)=>coupons.push(name))
+  .then(()=>{
+    res.render('admin/coupon',{coupons})
+  })
+  
+}
+
+
+
+
+
+
+
+
+// ordermanagement
+
+const ordermanagement = (req,res)=>{
+ 
+  let orderDetails =[]
+
+   db.collection("orders").find()
+  .forEach((userId)=>orderDetails.push(userId))
+  .then(()=>{
+    console.log(orderDetails,"order details ssss");
+    res.render('admin/oredermanagement',{orderDetails});   
+  })  
+}
+
+const statusChanger = (req, res) => {
+  const {
+    userId,
+    productId
+} = req.query
+console.log(req.body)
+const status = req.body.status
+    
+db.collection('orders').updateOne({
+  _id : ObjectId(userId), 'productDetails.items.item' : ObjectId(productId)
+}, { $set : { 'productDetails.items.$.status' : status}})
+.then((resolve) => {
+  res.redirect('/admin/order')
+})
+
+
+
+}
 
 
 
@@ -270,10 +328,13 @@ module.exports = {
   geteditcategoryPage,
   submitEditcategory,
   Addbooks,
+  ordermanagement,
   addbookpage,
   deletebooks,
+  getCoupons,
   editbook,
   blockUser,
   unblockUser,
-  submitbooks
+  submitbooks,addCoupons,
+  statusChanger
 }

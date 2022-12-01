@@ -58,10 +58,16 @@ router.post('/checkout',userlogin.confromcheckout)
 
 router.get('/myaccount',userlogin.getMyaccount)
 
+router.get('/coupon',userlogin.getcoupons)
+
 // router.get('/wishlist',userlogin.getWhishlist)
 
 router.get('/orderSuccess',userlogin.orderSuccess)
+router.post('/applycoupon',userlogin.applycoupon)
 
+router.post('user/cancelOrder',userlogin.ordercancelling)
+
+// router.
 //  router.get('/wishlist',(req,res)=>{
 //   res.render('user/wishlist')
 // })
