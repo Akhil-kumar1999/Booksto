@@ -54,14 +54,14 @@
                                             </div>
                                         </td>
 
-                                        <!-- <td>
+                                   <td>
                                             <div class="py-2">
 
                                                 <span class="d-block text-muted">Shiping Address</span>
                                             <span> </span>
                                                 
                                             </div>
-                                        </td> -->
+                                        </td>
                                     </tr>
                                 </tbody>
 
@@ -79,23 +79,16 @@
                             <div class="product border-bottom table-responsive">
 
                                 <table class="table table-borderless">
-
                                 <tbody>
                                    
                                     <tr>
-                                        <td width="20%">
-                                        
-                                      
-
-                                    </td>
-                                  
-                                    <td width="60%">
+                                         <td width="60%">
                                         <%for (var i=0;i<details.productDetails.items.length;i++){%>
                                         <span class="font-weight-bold"><%=details.productDetails.items[i].name%></span>
+
                                         <div class="product-qty">
                                             <span class="d-block"><%=details.productDetails.items[i].quantity%></span>
-                                            <span>author:<%=details.productDetails.items[i].author%></span>
-                                            
+                                            <span class="" >author:<%=details.productDetails.items[i].author%></span>    
                                         </div>
                                     </td>
                               
@@ -104,6 +97,7 @@
                                             <span class="font-weight-bold"><%=details.productDetails.items[i].price%></span>
                                         </div>
                                     </td>
+
                                     <%}%>
                                     </tr>
 

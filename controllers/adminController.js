@@ -224,11 +224,12 @@ const userslist = ((req, res) => {
   const userlist = []
   db.collection('user').find().forEach(name => userlist.push(name))
     .then(() => {
+      let count = user.count()
+      
       res.render('admin/user-list', { userlist })
+      console.log(userlist,'=============================')
     })
 })
-
-
 
 
 //blocking user

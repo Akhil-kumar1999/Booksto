@@ -24,7 +24,7 @@ const fileUpload = require('express-fileupload')
 app.use(fileUpload())
 
 
-app.use(session({secret: "key",cookie:{"key":"",maxAsecretge:86400000}}));
+app.use(session({secret: "key",cookie:{maxAge:86400000}, resave:false,saveUninitialized:true}));
 app.use(express.static(path.join(__dirname,"public")))
 app.use(expressLayouts)
 
