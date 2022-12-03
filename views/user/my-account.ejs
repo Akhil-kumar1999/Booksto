@@ -6,34 +6,22 @@
     <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8  mb-5 mb-lg-7">My account</h6>
     <div class="tab-wrapper">
     <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
-    <li class="nav-item mx-0">
-    <a class="nav-link d-flex align-items-center px-0 active" id="pills-one-example1-tab" data-toggle="pill" href="#pills-one-example1" role="tab" aria-controls="pills-one-example1" aria-selected="false">
-    <span class="font-weight-normal text-gray-600">Dashboard</span>
-    </a>
-    </li>
+
     <li class="nav-item mx-0">
      <a class="nav-link d-flex align-items-center px-0" id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="false">
     <span class="font-weight-normal text-gray-600">Orders</span>
     </a>
     </li>
     
-    <li class="nav-item mx-0">
-    <a class="nav-link d-flex align-items-center px-0" id="pills-four-example1-tab" data-toggle="pill" href="#pills-four-example1" role="tab" aria-controls="pills-four-example1" aria-selected="false">
-    <span class="font-weight-normal text-gray-600">Addresses</span>
-    </a>
-    </li>
+ 
     <li class="nav-item mx-0">
     <a class="nav-link d-flex align-items-center px-0" id="pills-five-example1-tab" data-toggle="pill" href="#pills-five-example1" role="tab" aria-controls="pills-five-example1" aria-selected="false">
-    <span class="font-weight-normal text-gray-600">Account details</span>
+    <span class="font-weight-normal text-gray-600">Address</span>
     </a>
     </li>
+
     <li class="nav-item mx-0">
-    <a class="nav-link d-flex align-items-center px-0" id="pills-six-example1-tab" data-toggle="pill" href="#pills-six-example1" role="tab" aria-controls="pills-six-example1" aria-selected="false">
-    <span class="font-weight-normal text-gray-600">Wishlist</span>
-    </a>
-    </li>
-    <li class="nav-item mx-0">
-    <a class="nav-link d-flex align-items-center px-0" href="#">
+    <a class="nav-link d-flex align-items-center px-0" href="/logout">
     <span class="font-weight-normal text-gray-600">Logout</span>
     </a>
     </li>
@@ -46,61 +34,29 @@
     <div class="pt-5 pt-lg-8 pl-md-5 pl-lg-9 space-bottom-2 space-bottom-lg-3 mb-xl-1">
     <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">Dashboard</h6>
     <div class="ml-lg-1 mb-4">
-    <span class="font-size-22">Hello alitfn58</span>
-    <span class="font-size-2"> (not alitfn58? <a class="link-black-100" href="#">Log out</a>)</span>
+    <span class="font-size-22"><%=resolve.name %> </span>
+  
     </div>
-    <div class="mb-4">
-    <p class="mb-0 font-size-2 ml-lg-1 text-gray-600">From your account dashboard you can view your <span class="text-dark">recent orders,</span> manage your <span class="text-dark">shipping and billing addresses,</span> and edit your <span class="text-dark">password and account details.</span></p>
-    </div>
+
     <div class="row no-gutters row-cols-1 row-cols-md-2 row-cols-lg-3">
     <div class="col">
     <div class="border py-6 text-center">
-    <a href="#" class="btn btn-primary rounded-circle px-4 mb-2">
+    <a class="btn btn-primary rounded-circle px-4 mb-2" id="pills-two-example1-tab" data-toggle="pill" href="#pills-two-example1" role="tab" aria-controls="pills-two-example1" aria-selected="false">
     <span class="flaticon-order font-size-10 btn-icon__inner"></span>
     </a>
     <div class="font-size-3 mb-xl-1">Orders</div>
     </div>
     </div>
+  
     <div class="col">
     <div class="border border-left-0 py-6 text-center">
-    <a href="#" class="btn bg-gray-200 rounded-circle px-4 mb-2">
-    <span class="flaticon-cloud-computing font-size-10 btn-icon__inner text-primary"></span>
-    </a>
-    <div class="font-size-3 mb-xl-1">Downloads</div>
-    </div>
-    </div>
-    <div class="col">
-    <div class="border border-left-0 py-6 text-center">
-    <a href="#" class="btn bg-gray-200 rounded-circle px-4 mb-2">
+    <a id="pills-five-example1-tab" data-toggle="pill" href="#pills-five-example1" role="tab" aria-controls="pills-five-example1" aria-selected="false" class="btn bg-gray-200 rounded-circle px-4 mb-2">
     <span class="flaticon-place font-size-10 btn-icon__inner text-primary"></span>
     </a>
     <div class="font-size-3 mb-xl-1">Addresses</div>
     </div>
     </div>
-    <div class="col">
-    <div class="border py-6 text-center">
-    <a href="#" class="btn bg-gray-200 rounded-circle px-4 mb-2">
-    <span class="flaticon-user-1 font-size-10 btn-icon__inner text-primary"></span>
-    </a>
-    <div class="font-size-3 mb-xl-1">Account Details</div>
-    </div>
-    </div>
-    <div class="col">
-    <div class="border border-left-0 py-6 text-center">
-    <a href="#" class="btn bg-gray-200  rounded-circle px-4 mb-2">
-    <span class="flaticon-heart font-size-10 btn-icon__inner text-primary"></span>
-    </a>
-    <div class="font-size-3 mb-xl-1">Wishlist</div>
-    </div>
-    </div>
-    <div class="col">
-    <div class="border border-left-0 py-6 text-center">
-    <a href="#" class="btn bg-gray-200 rounded-circle px-4 mb-2">
-    <span class="flaticon-exit font-size-10 btn-icon__inner text-primary"></span>
-    </a>
-    <div class="font-size-3 mb-xl-1">Orders</div>
-    </div>
-    </div>
+   
     </div>
     </div>
     </div>
@@ -133,12 +89,19 @@
     <td class="align-middle py-5">
     <span class="text-primary"><%=orderDetails[y].total%></span> </td>
     <td class="align-middle py-5">
-       <form action="/cancelOrder?orderId=<%=orderDetails[y]._id%>&productId=<%=orderDetails[y].productDetails.items[i]%>" method="post">
+
+      
     <div class="d-flex justify-content-center"> 
-    <button type="submit"  name="status" value="cancel request" onclick="click()" id="btn" class="btn btn-dark rounded-0 btn-wide font-weight-medium">Cancel 
+        <%if(orderDetails[y].productDetails.items[i].status=='cancelled'){%>
+        <h6 class="mt-3" style="display:block;">cancelled</h6>
+        <%}else{%>
+            <h6 id="messages" class="mt-3" style="display:none;">cancelled</h6>
+    <button type="button"  name="status"  value="cancel request" style="display: block;" onclick="cancelOrder('<%=orderDetails[y].productDetails.items[i].item%>','<%=orderDetails[y]._id%>')" id="cancelbtn" class="btn btn-dark rounded-0 btn-wide font-weight-medium">Cancel 
     </button>
+    <%}%>
     </div>
-</form>
+
+
     </td>
     </tr>
     </tbody>
@@ -190,144 +153,188 @@
     <div class="tab-pane fade" id="pills-five-example1" role="tabpanel" aria-labelledby="pills-five-example1-tab">
     <div class="border-bottom mb-6 pb-6 mb-lg-8 pb-lg-9">
     <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9">
-    <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">Account Details</h6>
-    <div class="font-weight-medium font-size-22 mb-4 pb-xl-1">Edit Account</div>
-    <div class="row">
-    <div class="col-md-6 mb-4">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput1">First name *</label>
-    <input type="text" class="form-control rounded-0 pl-3 placeholder-color-3" id="exampleFormControlInput1" name="name" aria-label="Jack Wayley" placeholder="Ali" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
+   
+    <p class="text-center text-success" id="successmessage" > </p>
+    <div class="font-weight-medium font-size-22 mb-4 pb-xl-1">Add or edit your Address</div>
+    <% if(resolve.address){ %> 
+
+    <div class="mb-6">
+        <h6 class="font-weight-medium font-size-22 mb-3">Current Address
+        </h6>
+        <address class="d-flex flex-column mb-4">
+        <span class="text-gray-600 font-size-2" id="name">Name:<%=resolve.address.firstname%> <%=resolve.address.lastname%></span>
+        <span class="text-gray-600 font-size-2" id="address">Full Address: <%=resolve.address.address%>,</span>
+        <span class="text-gray-600 font-size-2" id="city"><%=resolve.address.city%> </span>
+        <span class="text-gray-600 font-size-2" id="state"><%=resolve.address.state%></span>
+        <span class="text-gray-600 font-size-2" id="pincode"><%=resolve.address.pincode%></span>
+        </address>
+        <div class="d-flex">
+        <button type="button" class="btn btn-dark width-150 rounded-0 btn-wide font-weight-medium" onclick="Addressshow()">Edit</button>
+        </div>
+        </div>
+        <form action="" id="editaddress" style="display:none ;">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Firstname</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Firstname" name="firstname"value='<%=resolve.address.firstname%>'>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Lastname</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Lastname" name="lastname" value="<%=resolve.address.lastname%>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" value="<%=resolve.address.address%>">
+          </div>
+         
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <select id="inputCity"  class="form-control" name="city" >
+                  <option value="<%=resolve.address.city%>" selected>Choose...</option>
+                  <option>Trivandrum</option>
+                  <option>Kollam</option>
+                  <option>Alappuzha</option>
+                  <option>Kottayam</option>
+                  <option>Ernakulam</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control" name="state">
+                <option value="<%=resolve.address.state%>" selected>Choose...</option>
+                <option>Kerala</option>
+                <option>Tamilnadu</option>
+                <option>Karnataka</option>
+                <option>Delhi</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip" name="pincode" value="<%=resolve.address.pincode%>">
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="editAddress()">Update Address</button>
+        </form>
+        <% }else{ %> 
+          <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">Your Addressess</h6>
+      <h4 class="text-center mb-5">Add Address</h4>
+   
+    <form action="" id="useraddress">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Firstname</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Firstname" name="firstname">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Lastname</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Lastname" name="lastname">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+        </div>
+       
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <select id="inputCity" class="form-control" name="city">
+                <option selected>Choose...</option>
+                <option>Trivandrum</option>
+                <option>Kollam</option>
+                <option>Alappuzha</option>
+                <option>Kottayam</option>
+                <option>Ernakulam</option>
+              </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control" name="state">
+              <option selected>Choose...</option>
+              <option>Kerala</option>
+              <option>Tamilnadu</option>
+              <option>Karnataka</option>
+              <option>Delhi</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip" name="pincode">
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addAddress()">Add Address</button>
+      </form>
+      <% } %> 
     </div>
     </div>
-    <div class="col-md-6 mb-4">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput2">Last name *</label>
-    <input type="text" class="form-control rounded-0 pl-3 placeholder-color-3" id="exampleFormControlInput2" name="name" aria-label="Jack Wayley" placeholder="TUF.." required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
     </div>
-    </div>
-    <div class="col-md-12 mb-4">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput3">Display name</label>
-    <input type="text" class="form-control rounded-0" name="name" aria-label="Jack Wayley" id="exampleFormControlInput3" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
-    </div>
-    </div>
-    <div class="col-md-12 mb-4 mb-md-0">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput4">Email address</label>
-    <input type="email" class="form-control rounded-0" name="name" id="exampleFormControlInput4" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="pl-md-5 pl-lg-9 space-bottom-2 space-bottom-lg-3">
-    <div class="font-weight-medium font-size-22 mb-4 pb-xl-1">Password Change</div>
-    <div class="row">
-    <div class="col-md-12 mb-4">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput5">Current Password</label>
-    <input type="password" class="form-control rounded-0" name="name" id="exampleFormControlInput5" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
-    </div>
-    </div>
-    <div class="col-md-12 mb-4">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput6">New Password</label>
-    <input type="password" class="form-control rounded-0" name="name" id="exampleFormControlInput6" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
-    </div>
-    </div>
-    <div class="col-md-12 mb-5">
-    <div class="js-form-message">
-    <label for="exampleFormControlInput7">Confirm new password</label>
-    <input type="password" class="form-control rounded-0" name="name" id="exampleFormControlInput7" aria-label="Jack Wayley" required="" data-error-class="u-has-error" data-msg="Please enter your name." data-success-class="u-has-success">
-    </div>
-    </div>
-    <div class="ml-3">
-    <button type="submit" class="btn btn-wide btn-dark text-white rounded-0 transition-3d-hover height-60 width-390">Save Changes</button>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="tab-pane fade" id="pills-six-example1" role="tabpanel" aria-labelledby="pills-six-example1-tab">
-    <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9 space-bottom-lg-3">
-    <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-8 pb-xl-1">Wishlist</h6>
-    <table class="table mb-0">
-    <thead>
-    <tr class="border">
-    <th scope="col" class="py-3 border-bottom-0 font-weight-medium pl-3 pl-md-5">Prouct</th>
-    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Price</th>
-    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Stock Staus</th>
-    <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Actions</th>
-    </tr>
-    </thead>
-     <tbody>
-    <tr class="border">
-    <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6">
-    <div class="d-flex align-items-center">
-    <a class="d-block" href="#">
-    <img class="img-fluid" src="../../assets/img/90x138/img1.jpg" alt="Image-Description">
-    </a>
-    <div class="ml-xl-4">
-    <div class="font-weight-normal">
-    <a href="#">The Overdue Life of Amy Byler</a>
-    </div>
-    <div class="font-size-2"><a href="#" class="text-gray-700" tabindex="0">Jay Shetty</a></div>
-    </div>
-    </div>
-    </th>
-    <td class="align-middle py-5">$37</td>
-    <td class="align-middle py-5">In Stock</td>
-    <td class="align-middle py-5">
-    <span class="product__add-to-cart">ADD TO CART</span>
-    </td>
-    </tr>
-    <tr class="border">
-    <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6">
-    <div class="d-flex align-items-center">
-    <a class="d-block" href="#">
-    <img class="img-fluid" src="../../assets/img/90x138/img3.jpg" alt="Image-Description">
-    </a>
-    <div class="ml-xl-4">
-    <div class="font-weight-normal">
-    <a href="#">The Overdue Life of Amy Byler</a>
-    </div>
-    <div class="font-size-2"><a href="#" class="text-gray-700" tabindex="0">Jay Shetty</a></div>
-    </div>
-    </div>
-    </th>
-    <td class="align-middle py-5">$37</td>
-    <td class="align-middle py-5">In Stock</td>
-    <td class="align-middle py-5">
-    <span class="product__add-to-cart">ADD TO CART</span>
-    </td>
-    </tr>
-    <tr class="border">
-    <th class="pl-5 font-weight-normal align-middle py-6">
-    <div class="d-flex align-items-center">
-    <a class="d-block" href="#">
-    <img class="img-fluid" src="../../assets/img/90x138/img4.jpg" alt="Image-Description">
-    </a>
-    <div class="ml-xl-4">
-    <div class="font-weight-normal">
-    <a href="#">The Overdue Life of Amy Byler</a>
-    </div>
-    <div class="font-size-2"><a href="#" class="text-gray-700" tabindex="0">Jay Shetty</a></div>
-    </div>
-    </div>
-    </th>
-    <td class="align-middle py-5">$37</td>
-     <td class="align-middle py-5">In Stock</td>
-    <td class="align-middle py-5">
-    <span class="product__add-to-cart">ADD TO CART</span>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </div>
+  
     </div>
     </div>
     </div>
     </div>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function cancelOrder(proid,orderid){
+        $.ajax({
+            url:'/cancelOrder',
+            data:{
+                productId:proid,orderId:orderid
+            },
+            method:'post',
+            success:(resolve)=>{
+if(resolve.message=='productcancelled'){
+    document.getElementById('messages').style.display='block';
+    document.getElementById('cancelbtn').style.display='none';
+}else{
+    document.getElementById('messages').style.display='none';
+    document.getElementById('cancelbtn').style.display='block';
+    console.log('cancelfailed');
+}
+            }
+        })
+    }
 
+    function addAddress(){
+      $.ajax({
+url:'/user/add-address',
+data:$('#useraddress').serialize(),
+method:'post',
+success:(resolve)=>{
+  console.log(resolve);
+document.getElementById('successmessage').innerHTML=resolve.Message
+}
+
+      })
+    }
+
+
+function Addressshow(){
+document.getElementById('editaddress').style.display='block'
+}
+
+function editAddress(){
+  $.ajax({
+    url:'editaddress',
+    data:$('#editaddress').serialize(),
+    method:'post',
+    success:(resolve)=>{
+      if(resolve){
+        document.getElementById('name').innerHTML=resolve.response.address.firstname ,resolve.response.address.lastname;
+document.getElementById('address').innerHTML=resolve.response.address.address;
+document.getElementById('city').innerHTML=resolve.response.address.city;
+document.getElementById('state').innerHTML=resolve.response.address.state
+document.getElementById('pincode').innerHTML=resolve.response.address.pincode
+console.log('hii');
+document.getElementById('editaddress').style.display='none'
+document.getElementById('successmessage').innerHTML=resolve.Message
+      }
+
+    }
+  })
+}
+</script>
   

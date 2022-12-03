@@ -215,7 +215,8 @@ const getWhishlist = (req, res) => {
 
 const Addtocart = async (req, res) => {
   if (req.session.userloggedIn) {
-    let productid = req.body.proid;
+    let productid = req.body.proId;
+    console.log(req.body);
     let userid = req.session.user._id;
     
 
@@ -250,7 +251,9 @@ const Addtocart = async (req, res) => {
                     { "items.item": ObjectId(productid) },
                     { $inc: { "items.$.quantity": 1 } }
                   )
-                  .then((resolve) => {})
+                  .then((resolve) => {
+                    res.json({message:'exist'})
+                  })
                   .catch(() => {
                     console.log("cannot added the quantity");
                   });
@@ -262,7 +265,7 @@ const Addtocart = async (req, res) => {
                   .updateOne({ user: ObjectId(userid) },
                     { $push: { items: cartObject } } )
                   .then((resolve) => {
-                    db.collection("cart")
+                  /*   db.collection("cart")
                       .findOne({ user: ObjectId(userid) })
                       .then(async (resolve) => {
                         const totalAmount = await getCartTotal(userid);
@@ -273,7 +276,8 @@ const Addtocart = async (req, res) => {
                       })
                       .catch(() => {
                         console.log("error");
-                      });
+                      }); */
+                      res.json({message:"item added to cart "})
                   });
               }
             } else {
@@ -281,7 +285,7 @@ const Addtocart = async (req, res) => {
               db.collection("cart")
                 .insertOne(proObject)
                 .then((resolve) => {
-                  db.collection("cart")
+                /*   db.collection("cart")
                     .findOne({ user: ObjectId(userid) })
                     .then(async (resolve) => {
                       const totalAmount = await getCartTotal(userid);
@@ -292,7 +296,8 @@ const Addtocart = async (req, res) => {
                         totalAmount,
                         status: "loggedIn",
                       });
-                    });
+                    }); */
+                    res.json({message:'New usercart added'})
                 });
             }
           });
@@ -301,6 +306,9 @@ const Addtocart = async (req, res) => {
       .catch((err) => {
         console.log(err);
       });
+  }
+  else {
+    res.redirect('/login')
   }
 };
 
@@ -328,16 +336,21 @@ const getcartPage = (req, res) => {
     db.collection("cart")
       .findOne({ user: ObjectId(userId) })
       .then((response) => {
-        console.log('this ti ', response)
-        let count = response.items.length;
-        console.log(count,'qqqqqqqqqqqqqqqqqqqqqqq')
-        db.collection("user")
-          .findOne({ _id: ObjectId(userId) })
-          .then(async (resolve) => {
-            totalAmount = await getCartTotal(userId);
-            let product = response;
-            res.render("user/cart", { product, totalAmount, resolve, count });
-          });
+        if(response){
+          console.log('this ti ', response)
+          let count = response.items.length;
+          console.log(count,'qqqqqqqqqqqqqqqqqqqqqqq')
+          db.collection("user")
+            .findOne({ _id: ObjectId(userId) })
+            .then(async (resolve) => {
+              totalAmount = await getCartTotal(userId);
+              let product = response;
+              res.render("user/cart", { product, totalAmount, resolve, count });
+            });
+        }else{
+          res.render("user/cartempty");
+        }
+     
       });
   } else {
     res.redirect("/login");
@@ -390,19 +403,27 @@ const getCheckoutpage = (req, res) => {
   }
 };
 
+
+// apply coupon
+
 const applycoupon=(req,res)=>{
   let userId=req.session.user._id
-  db.collection('usercoupons').findOne({user:ObjectId(userId)}).then((resolve)=>{
+  db.collection('usercoupons').findOne({user:ObjectId(userId)})
+  .then((resolve)=>{
 if(resolve){
   res.json({Message:'You can only apply for one offer'})
 
-}else{
+}
+else{
   console.log('jhj',req.body);
-  db.collection('coupons').findOne({name:req.body.coupon}).then((resolve)=>{
+  db.collection('coupons').findOne({name:req.body.coupon})
+  .then((resolve)=>{
     console.log(resolve.discount);
     let price=req.body.price-resolve.discount
 
-db.collection('usercoupons').insertOne({user:ObjectId(userId),couponname:resolve.name,offerapplied:resolve.discount}).then(()=>{
+db.collection('usercoupons').
+insertOne({user:ObjectId(userId),couponname:resolve.name,offerapplied:resolve.discount})
+.then(()=>{
   res.json({price})
 })
    
@@ -429,7 +450,8 @@ const confromcheckout = (req, res) => {
       });
 
       let productDetails = resolve;
-
+let date=new Date();
+let month=date.getMonth();
       if (payment_method == "cod") {
         db.collection("orders")
           .insertOne({
@@ -437,7 +459,8 @@ const confromcheckout = (req, res) => {
             userDtails,
             productDetails,
             total,
-            date:new Date()
+            date:date,
+            month:month
           })
           .then((resolve) => {
             let orderId = resolve.insertedId;
@@ -457,7 +480,9 @@ const confromcheckout = (req, res) => {
             userDtails,
             productDetails,
             total,
-            date: new Date(),
+            date: date,
+            month:month
+
           })
           .then(async (resolve) => {
             console.log(`resolve:${resolve}`)
@@ -549,18 +574,18 @@ const getMyaccount = (req, res) => {
     db.collection("user")
       .findOne({ _id: ObjectId(userId) })
       .then((resolve) => {
-        
         db.collection("orders")
           .find({ userId: ObjectId(userId) })
           .forEach((userId) => orderDetails.push(userId))
           .then((response) => {
-            console.log(orderDetails);
-            res.render("user/my-account", { resolve, orderDetails });
+          res.render("user/my-account", { resolve, orderDetails });
           });
       })
       .catch(() => {
         console.log("user not found");
       });
+  }else{
+    res.redirect('/login')
   }
 };
 
@@ -637,23 +662,51 @@ const removeCartproduct = (req, res) => {
 // order cancellin
  
 const ordercancelling =(req,res)=>{
-
+let userId=req.session.user._id
 const {
   orderId,
   productId
-} = req.query
-
+} = req.body
+console.log(req.body);
+db.collection('orders').findOne
 db.collection('orders').updateOne({
-  _id : ObjectId(userId), 'productDetails.items.item' : ObjectId(productId)
+  _id : ObjectId(orderId), 'productDetails.items.item' : ObjectId(productId)
 }, { $set : { 'productDetails.items.$.status' : 'cancelled' }})
 .then((resolve) => {
   console.log(resolve,'sssssssssssssss')
-  res.redirect('/myaccount')
+  res.json({message:'productcancelled'})
 })
 }
 
+const addressAdd=(req,res)=>{
+  if(req.session.userloggedIn){
+    console.log(req.body);
+let userId=req.session.user._id
+console.log(userId);
+    db.collection('user').updateOne({_id:ObjectId(userId)},{$set:{address:req.body}}).then((resolve)=>{
+      console.log('address updated');
+      console.log(resolve);
+      res.json({Message:'Address Added Successfully'})
+    })
+  }else{
+    res.redirect('/login')
+  }
 
+}
 
+const updateAddress=(req,res)=>{
+  let userId=req.session.user._id
+  console.log(req.body);
+  db.collection('user').updateOne({_id:ObjectId(userId)},{$set:{address:req.body}}).then((resolve)=>{
+    console.log('address updated');
+    console.log(resolve);
+    db.collection('user').findOne({_id:ObjectId(userId)}).then((response)=>{
+      console.log(response,'gjghj');
+      res.json({Message:'Address updated Successfully',response})
+    })
+   
+  })
+}
 
 // logout
 const reqForLogout = (req, res) => {
@@ -680,5 +733,5 @@ module.exports = {
   removeCartproduct,
   getMyaccount,
   verifyPayment,
-  orderSuccess,applycoupon
+  orderSuccess,applycoupon,addressAdd,updateAddress
 }

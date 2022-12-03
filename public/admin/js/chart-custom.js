@@ -8744,10 +8744,36 @@ $(".table-add").on("click", "i", () => {
 
 
 if(jQuery('#iq-sale-chart').length){
+
+	let january = document.getElementById('jan').innerHTML
+		let febuary = document.getElementById('feb').innerHTML
+		let march = document.getElementById('march').innerHTML
+		let april = document.getElementById('april').innerHTML
+		let may = document.getElementById('may').innerHTML
+		let june = document.getElementById('june').innerHTML
+		let july = document.getElementById('july').innerHTML
+		let august = document.getElementById('aug').innerHTML
+		let september = document.getElementById('sept').innerHTML
+		let october = document.getElementById('oct').innerHTML
+		let november = document.getElementById('nov').innerHTML
+		let december = document.getElementById('dec').innerHTML
+		console.log(november,'lll')
+		console.log('suii')
 	var options = {
           series: [{
-          name: 'Net Profit',
-          data: [44, 55, 57, 56, 61, 58, 63]
+          name: 'Sales',
+          data: [january,
+			febuary,
+			march,
+			april,
+			may,
+			june,
+			july,
+			august,
+			september,
+			october,
+			november,
+			december]
         }],
           chart: {
           type: 'bar'
@@ -8769,7 +8795,7 @@ if(jQuery('#iq-sale-chart').length){
           colors: ['transparent']
         },
         xaxis: {
-          categories: ['s', 'm', 't', 'w', 't', 'f', 's'],
+          categories: ['jan', 'feb', 'march', 'april', 'may', 'june', 'july','aug','sept','oct','nov','dec'],
         },
         yaxis: {
           title: {
@@ -8792,7 +8818,7 @@ if(jQuery('#iq-sale-chart').length){
         tooltip: {
           y: {
             formatter: function (val) {
-              return "$ " + val + " thousands"
+              return val + " orders"
             }
           }
         }

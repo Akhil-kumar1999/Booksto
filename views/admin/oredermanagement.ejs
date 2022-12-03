@@ -16,35 +16,37 @@
     </thead>
     
     <tbody>
-       <%for(var i =0; i< orderDetails.length; i++){%>
+       <%for(var y =0; y< orderDetails.length; y++){%>
+        <%for(var i=0; i< orderDetails[y].productDetails.items.length; i++){%>
         <tr>
-            <td>No</td>
-            <td><%=orderDetails[i].date%></td>
-            <td><%=orderDetails[i].userDtails.firstname%></td>
-            <td><%=orderDetails[i].userDtails.address1%></td>
-            <td><%=orderDetails[i].productDetails.items[0].price%></td>
-            <td><%=orderDetails[i].userDtails.payment_method%></td>
+            <td><%=y+1 %> </td>
+            <td><%=orderDetails[y].date%></td>
+            <td><%=orderDetails[y].userDtails.firstname%></td>
+            <td><%=orderDetails[y].userDtails.address1%></td>
+            <td><%=orderDetails[y].productDetails.items[i].price%></td>
+            <td><%=orderDetails[y].userDtails.payment_method%></td>
             
-           <form method="post" action="/admin/status?userId=<%=orderDetails[i]._id%>&productId=<%=orderDetails[i].productDetails.items[0].item%>">
+           <form method="post" action="/admin/status?userId=<%=orderDetails[y]._id%>&productId=<%=orderDetails[y].productDetails.items[i].item%>">
            <td>
             <div class="form-row align-items-center">
               <div class="col-auto my-1">
                 <select class="custom-select mr-sm-2" name="status" id="inlineFormCustomSelect">
-                  <option  selected><%=orderDetails[i].productDetails.items[0].status%></option>
-                  <% if(orderDetails[i].productDetails.items[0].status=="Cancel Request"){ %> 
-                    <option  value="Cancel">Canceled</option> 
-                  <% }else if(orderDetails[i].productDetails.items[0].status=="Dispatch"){ %> 
-                    <% }else if(orderDetails[i].productDetails.items[0].status=="Placed"){ %> 
-                        <option  value="Dispatch">Dispatch</option>
+                
+                  <% if(orderDetails[y].productDetails.items[i].status=="cancelled"){ %> 
+                    <option selected value="Cancel">Cancel</option> 
+                  <% }else if(orderDetails[y].productDetails.items[i].status=="Dispatch"){ %> 
+                    <% }else if(orderDetails[y].productDetails.items[i].status=="placed"){ %> 
+                        <option selected value="Dispatch">Dispatch</option>
                         <option  value="Deliver">Deliver</option>
-                        <option  value="Cancel">Canceled</option> 
-                  <% }else if(orderDetails[i].productDetails.items[0].status=="pending" ||orderDetails[i].productDetails.items[0].status=="Processing" ){ %> 
-                  <option  value="Placed">Placed</option>
+                        <option  value="Cancel">Cancel</option> 
+                  <% }else if(orderDetails[y].productDetails.items[i].status=="pending" ||orderDetails[y].productDetails.items[i].status=="Processing" ){ %> 
+                  <option selected value="Placed">Placed</option>
                   <option  value="Processing">Processing</option>
                   <option  value="Dispatch">Dispatch</option>
                   <option  value="Deliver">Deliver</option>
                   <option  value="Cancel">Canceled</option> 
-                     <% } %>  
+                     <% } %> 
+                    
                 </select>
             </div>
             </div>
@@ -56,6 +58,7 @@
                 </form>
            
         </tr>
+        <%}%>
         <%}%>
         
        

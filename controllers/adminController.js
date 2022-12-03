@@ -21,14 +21,30 @@ const adminloginPage = (req, res) => {
 
 
 const signin = ((req, res) => {
+
   let email = req.body.adminLogemail
   let password = req.body.adminpass
 
   db.collection('admin').findOne({ email: email })
     .then((resolve) => {
-      console.log(resolve);
       if (password == resolve.password) {
-        res.render('admin/admin-dashboard')
+        db.collection('user').find()
+  .count()
+  .then((response)=>{
+    db.collection('books').find()
+    .count()
+    .then((ress)=>{
+      db.collection('orders').find()
+      .count()
+      .then((resolve)=>{
+        let ordercount= resolve
+        let bookcount= ress
+        let count = response
+        console.log(count,bookcount,ordercount,'ccccccccccccccccccccc')
+        res.render('admin/admin-dashboard',{count,bookcount,ordercount})
+           })
+            })
+    })
       }
     })
 })
@@ -36,9 +52,25 @@ const signin = ((req, res) => {
 
 // getting dashboard
 
-const gettingdashboard = (req,res)=>{
-  res.render('admin/admin-dashboard')
-}
+/* const gettingdashboard = (req,res)=>{
+  db.collection('user').find()
+  .count()
+  .then((response)=>{
+    db.collection('books').find()
+    .count()
+    .then((ress)=>{
+      db.collection('orders').find()
+      .count()
+      .then((resolve)=>{
+        let ordercount= resolve
+        let bookcount= ress
+        let count = response
+        console.log(count,bookcount,ordercount,'ccccccccccccccccccccc')
+        res.render('admin/admin-dashboard',{count,bookcount,ordercount})
+           })
+            })
+    })
+} */
 
 
 
@@ -59,7 +91,8 @@ const addbookpage = (req, res) => {
 // admin get book page
 const getBookpage = (async (req, res) => {
   return new Promise(async (resolve, reject) => {
-    let books = await db.collection('books').find().toArray()
+    let books = await db.collection('books').find()
+    .toArray()
     res.render('admin/admin-books', { books })
   })
 })
@@ -222,10 +255,9 @@ const deletebooks = (req, res) => {
 
 const userslist = ((req, res) => {
   const userlist = []
-  db.collection('user').find().forEach(name => userlist.push(name))
+  db.collection('user').find()
+  .forEach(name => userlist.push(name))
     .then(() => {
-      let count = user.count()
-      
       res.render('admin/user-list', { userlist })
       console.log(userlist,'=============================')
     })
@@ -250,6 +282,7 @@ const unblockUser = (req, res) => {
       res.redirect('/admin/users')
     })
 }
+
 
 
 
@@ -292,9 +325,9 @@ const ordermanagement = (req,res)=>{
    db.collection("orders").find()
   .forEach((userId)=>orderDetails.push(userId))
   .then(()=>{
-    console.log(orderDetails,"order details ssss");
     res.render('admin/oredermanagement',{orderDetails});   
   })  
+  
 }
 
 const statusChanger = (req, res) => {
@@ -302,7 +335,6 @@ const statusChanger = (req, res) => {
     userId,
     productId
 } = req.query
-console.log(req.body)
 const status = req.body.status
     
 db.collection('orders').updateOne({
@@ -316,7 +348,43 @@ db.collection('orders').updateOne({
 
 }
 
+const gettingdashboard = (req, res) => {
+  return new Promise(async(resolve,reject)=>{
+    let jan =await db.collection('orders').find({ month: 0 }).count()
+    let feb =await db.collection('orders').find({ month: 1 }).count()
+    let march =await db.collection('orders').find({ month: 2 }).count()
+    let april =await db.collection('orders').find({ month: 3 }).count()
+    let may =await db.collection('orders').find({ month: 4 }).count()
+    let june =await db.collection('orders').find({ month: 5 }).count()
+    let july =await db.collection('orders').find({ month: 6 }).count()
+    let aug = await db.collection('orders').find({ month: 7 }).count()
+    let sept =await db.collection('orders').find({ month: 8 }).count()
+    let oct = await db.collection('orders').find({ month: 9 }).count()
+    let nov =await db.collection('orders').find({ month: 10 }).count()
+    let dec =await db.collection('orders').find({ month: 11}).count()
+    console.log(oct,nov,dec);
+    db.collection('user').find()
+    .count()
+    .then((response)=>{
+      db.collection('books').find()
+      .count()
+      .then((ress)=>{
+        db.collection('orders').find()
+        .count()
+        .then((resolve)=>{
+          let ordercount= resolve
+          let bookcount= ress
+          let count = response
+          
+          console.log(count,bookcount,ordercount,'ccccccccccccccccccccc')
+          console.log(nov);
+          res.render('admin/admin-dashboard',{count,bookcount,ordercount,jan,feb,march,april,may,june,july,aug,sept,oct,nov,dec,})
+             })
+              })
+      })
 
+  })
+};
 
 module.exports = {
   adminloginPage,
@@ -337,5 +405,5 @@ module.exports = {
   blockUser,
   unblockUser,
   submitbooks,addCoupons,
-  statusChanger
+  statusChanger,
 }

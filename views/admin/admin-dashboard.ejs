@@ -7,7 +7,7 @@
                   <div class="d-flex align-items-center">
                      <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-user-line"></i></div>
                      <div class="text-left ml-3">                                 
-                        <h2 class="mb-0"><span class="counter">5000</span></h2>
+                        <h2 class="mb-0"><span class="counter"><%=count%></span></h2>
                         <h5 class="">Users</h5>
                      </div>
                   </div>
@@ -20,40 +20,28 @@
                   <div class="d-flex align-items-center">
                      <div class="rounded-circle iq-card-icon bg-danger"><i class="ri-book-line"></i></div>
                      <div class="text-left ml-3">                                 
-                        <h2 class="mb-0"><span class="counter">4.8</span>k</h2>
+                        <h2 class="mb-0"><span class="counter"><%=bookcount%></span>k</h2>
                         <h5 class="">Books</h5>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         <div class="col-md-6 col-lg-3">
-            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-               <div class="iq-card-body">
-                  <div class="d-flex align-items-center">
-                     <div class="rounded-circle iq-card-icon bg-warning"><i class="ri-shopping-cart-2-line"></i></div>
-                     <div class="text-left ml-3">                                 
-                        <h2 class="mb-0"><span class="counter">1.2</span>k</h2>
-                        <h5 class="">Sale</h5>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+        
          <div class="col-md-6 col-lg-3">
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                <div class="iq-card-body">
                   <div class="d-flex align-items-center">
                      <div class="rounded-circle iq-card-icon bg-info"><i class="ri-radar-line"></i></div>
                      <div class="text-left ml-3">                                 
-                        <h2 class="mb-0"><span class="counter">690</span></h2>
+                        <h2 class="mb-0"><span class="counter"><%=ordercount%></span></h2>
                         <h5 class="">Orders</h5>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         <div class="col-md-4">
+         <div class="col-sm-7">
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                <div class="iq-card-header d-flex justify-content-between align-items-center">
                   <div class="iq-header-title">
@@ -65,7 +53,7 @@
                </div>
             </div>
          </div>
-         <div class="col-md-4">
+         <!-- <div class="col-md-4">
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                <div class="iq-card-header d-flex justify-content-between align-items-center">
                   <div class="iq-header-title">
@@ -110,8 +98,8 @@
                   </ul>
                </div>
             </div>
-         </div>
-         <div class="col-md-4">
+         </div> -->
+         <!-- <div class="col-md-4">
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                   <div class="iq-card-body">
                      <h4 class="text-uppercase text-black mb-0">Session(Now)</h4>
@@ -129,8 +117,8 @@
                      <div id="wave-chart-7"></div>
                   </div>
                </div>
-         </div>
-         <div class="col-sm-12">
+         </div> -->
+         <!-- <div class="col-sm-12">
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
@@ -211,6 +199,30 @@
                   </div>
                </div>
             </div>
-         </div>
+         </div> -->
       </div>
-  
+      <% var jan %> 
+      <% var feb %> 
+      <% var march %> 
+      <% var april %> 
+      <% var may %> 
+      <% var june %> 
+      <% var july %> 
+      <% var aug %> 
+      <% var sept %> 
+      <% var oct %> 
+      <% var nov %> 
+      <% var dec %> 
+         <h1 hidden id="jan"><%= jan %> </h1>
+         <h1 hidden id="feb"><%= feb %> </h1>
+         <h1 hidden id="march"><%= march %> </h1>
+         <h1 hidden id="april"><%= april %> </h1>
+         <h1 hidden id="may"><%= may %> </h1>
+         <h1 hidden id="june"><%= june %> </h1>
+         <h1 hidden id="july"><%= july %> </h1>
+         <h1 hidden id="aug"><%= aug %> </h1>
+         <h1 hidden id="sept"><%= sept %> </h1>
+         <h1 hidden id="oct"><%= oct %> </h1>
+         <h1 hidden id="nov"><%= nov %> </h1>
+         <h1 hidden id="dec"><%= dec %> </h1>
+         

@@ -28,19 +28,24 @@
                                     Click here to enter your code
                                 </a>
                             </div>
-                            <form id="collapseExample9" class="collapse checkout_coupon mt-4 p-4 bg-white border">
+
+                         <!-- add coupon -->
+
+                            <div id="collapseExample9" class="collapse checkout_coupon mt-4 p-4 bg-white border">
                                 <div class="row d-flex">
+                                    
                                     <p class="col-md-4 d-inline form-row form-row-first mb-3 mb-md-0">
                                         <input type="text" name="coupon_code1" class="input-text form-control"
                                             placeholder="Coupon code" id="coupon_code1" value="" >
                                     </p>
                                     <p class="col-md-3 d-inline form-row form-row-last">
-                                       <button onclick="applyCoupon()"></button>
+                                        
+                                       <button  button type="button" onclick="applyCoupon()">Apply</button>
                                     </p>
                                     <p style="color:red ;" id="Message"></p>
                                 </div>
                                 <div class="clear"></div>
-                            </form>
+                            </div>
 
 
 
@@ -101,24 +106,7 @@
                                                         <option value="AG">Antigua and Barbuda</option>
                                                         <option value="AR">Argentina</option>
                                                         <option value="AM">Armenia</option>
-                                                        <option value="AW">Aruba</option>
-                                                        <option value="AU">Australia</option>
-                                                        <option value="AT">Austria</option>
-                                                        <option value="AZ">Azerbaijan</option>
-                                                        <option value="BS">Bahamas</option>
-                                                        <option value="BH">Bahrain</option>
-                                                        <option value="BD">Bangladesh</option>
-                                                        <option value="BB">Barbados</option>
-                                                        <option value="BY">Belarus</option>
-                                                        <option value="PW">Belau</option>
-                                                        <option value="BE">Belgium</option>
-                                                        <option value="BZ">Belize</option>
-                                                        <option value="BJ">Benin</option>
-                                                        <option value="BM">Bermuda</option>
-                                                        <option value="BT">Bhutan</option>
-                                                        <option value="BO">Bolivia</option>
-                                                        <option value="BQ">Bonaire, Saint Eustatius and Saba
-                                                        </option>
+                                                     
                                                     </select>
 
                                                 </p>
@@ -356,40 +344,7 @@
                                                     Address</a>
                                             </div>
                                         </div>
-                                        <!-- <div class="p-4d875 border">
-                                            <div id="checkoutHeadingThree" class="checkout-head">
-                                                <a href="#"
-                                                    class="text-dark d-flex align-items-center justify-content-between"
-                                                    data-toggle="collapse" data-target="#checkoutCollapseThree"
-                                                    aria-expanded="true" aria-controls="checkoutCollapseThree">
-                                                    <h3 class="checkout-title mb-0 font-weight-medium font-size-3">
-                                                        Coupon</h3>
-                                                    <svg class="mins" xmlns="http://www.w3.org/2000/svg"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="15px"
-                                                        height="2px">
-                                                        <path fill-rule="evenodd" fill="rgb(22, 22, 25)"
-                                                            d="M0.000,-0.000 L15.000,-0.000 L15.000,2.000 L0.000,2.000 L0.000,-0.000 Z" />
-                                                    </svg>
-                                                    <svg class="plus" xmlns="http://www.w3.org/2000/svg"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="15px"
-                                                        height="15px">
-                                                        <path fill-rule="evenodd" fill="rgb(22, 22, 25)"
-                                                            d="M15.000,8.000 L9.000,8.000 L9.000,15.000 L7.000,15.000 L7.000,8.000 L0.000,8.000 L0.000,6.000 L7.000,6.000 L7.000,-0.000 L9.000,-0.000 L9.000,6.000 L15.000,6.000 L15.000,8.000 Z" />
-                                                    </svg>
-                                                </a>
-                                            </div> -->
-
-                                            <!-- <div id="checkoutCollapseThree" class="mt-4 checkout-content collapse show"
-                                                aria-labelledby="checkoutHeadingThree" data-parent="#checkoutAccordion">
-                                                <div class="coupon">
-                                                    <label for="coupon_code">Coupon:</label>
-                                                    <input type="text" name="coupon_code" class="input-text"
-                                                        id="coupon_code" value="" placeholder="Coupon code"
-                                                        autocomplete="off">
-                                                   <button onclick="applyCoupon()" >Apply</button>
-                                                </div>
-                                            </div> -->
-                                        <!-- </div> -->
+                                       
 
                                         <div class="p-4d875 border">
                                             <table class="shop_table shop_table_responsive">
@@ -585,7 +540,6 @@
 function applyCoupon(){
     let coupon=document.getElementById('coupon_code1').value
     let price=document.getElementById('totalprice').innerHTML
-    console.log(coupon);
     $.ajax({
       url: "applycoupon",
       data: {

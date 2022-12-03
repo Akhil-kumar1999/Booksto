@@ -1,7 +1,7 @@
 
 <div id="primary" class="content-area">
 
-
+    
     
     <!-- <main id="main" class="site-main "> -->
         <div class="product">
@@ -24,8 +24,11 @@
                                 </div>
                             </figure>
                         </div>
+                        
                         <div class="col-md-6 col-lg-5 summary entry-summary">
+                           
                             <div class="border bg-white">
+                                
                                 <div class="py-4 px-5"> 
                                     <div class="border-bottom mb-4">
                                         <h1 class="product_title entry-title font-size-26 mb-3"><%=singleproduct.name%></h1>
@@ -52,20 +55,20 @@
                                         </span> 
                                         <span class="woocommerce-Price-amount amount">
                                             <span class="woocommerce-Price-currencySymbol">₹</span><%=singleproduct.price%>
+                                            <span id="messages" style="color: red;display: none;" class="ml-4" >Item is already in cart </span>
                                         </span>
+                                       
                                     </p>
                                    
-
-                                    <form class="cart mb-4 d-md-flex align-items-end" method="post" action="addtocart"
-                                        enctype="multipart/form-data">
+                                  
+                                    
                                        
                                         <%var id%>
-                                         <input type="hidden" name="proid" value="<%=singleproduct._id%>">
-                                         <button type="submit" name="add-to-cart"
-                                            class="btn btn-block ml-md-3 btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt">Add
+                                         <button id="cartbutton" style='display: block;' type="button" onclick="addtoCart('<%=singleproduct._id%>')" name="add-to-cart"
+                                            class="btn mb-3 btn-block ml-md-3  btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt">Add
                                             to cart</button>  
-                                        
-                                    </form>
+                                        <a id="gotocart" style="display: none ;"  class="btn mb-3 btn-block ml-md-3 btn-dark border-0 rounded-0 p-3 single_add_to_cart_button button alt" href="/getCart">Go To Cart</a>
+                                    
 
 
 
@@ -87,3 +90,29 @@
          </div>
     </main>
 </div>
+
+<script>
+function addtoCart(proId){
+    $.ajax({
+        url:'/addtocart',
+        data:{proId:proId},
+        method:'post',
+        success:(resolve)=>{
+            console.log(resolve.message);
+if (resolve.message=="exist"){
+document.getElementById('messages').style.display='block';
+document.getElementById('cartbutton').style.display='none';
+document.getElementById('gotocart').style.display='block';
+
+}else{
+    document.getElementById('messages').style.display='none';
+document.getElementById('cartbutton').style.display='block';
+document.getElementById('gotocart').style.display='none';
+location.href='/getCart'
+}
+        }
+    })
+}
+
+
+</script>

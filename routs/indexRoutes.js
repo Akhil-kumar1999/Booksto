@@ -65,8 +65,9 @@ router.get('/coupon',userlogin.getcoupons)
 router.get('/orderSuccess',userlogin.orderSuccess)
 router.post('/applycoupon',userlogin.applycoupon)
 
-router.post('user/cancelOrder',userlogin.ordercancelling)
-
+router.post('/cancelOrder',userlogin.ordercancelling)
+router.post('/user/add-address',userlogin.addressAdd)
+router.post('/editaddress',userlogin.updateAddress)
 // router.
 //  router.get('/wishlist',(req,res)=>{
 //   res.render('user/wishlist')
@@ -76,10 +77,17 @@ router.get('/view',(req,res)=>{
 })
 
 
+
+
+
 router.get('/checkoout',(req,res)=>{
     res.render('Checkoout')
 })
 
+
+router.get('/test',(req,res)=>{
+    res.render('user/account')
+})
 
 
 

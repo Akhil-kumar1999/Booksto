@@ -42,3 +42,7 @@ app.use( function(req,res,next){
   next();
 });
 
+app.use((req ,res) =>{
+  console.log('not found !!')
+  res.status(404).render('user/404page');
+})
